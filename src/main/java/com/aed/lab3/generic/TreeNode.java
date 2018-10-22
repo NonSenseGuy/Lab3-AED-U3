@@ -1,53 +1,76 @@
 package com.aed.lab3.generic;
 
-public class TreeNode<E> {
+import java.util.ArrayList;
+
+public class TreeNode<K extends Comparable<K>, V> implements Comparable<K>{
 	
-	private E element;
-	private TreeNode<E> parent;
-	private TreeNode<E> left;
-	private TreeNode<E> right;
+	private K key;
+	private ArrayList<V> value;
+	private TreeNode<K,V> right;
+	private TreeNode<K,V> left;
+	private TreeNode<K,V> parent;
 	
-	public TreeNode(E element) {
-		this.element = element;
+
+	public TreeNode(K key, V value ) {
+		this.key = key;
+		this.value = new ArrayList<>();
+		this.value.add(value);
 	}
 	
-	public TreeNode(E element, TreeNode<E> left, TreeNode<E> right, TreeNode<E> parent) {
-		this. element = element;
-		this.right = right;
-		this.left = left;
-		this.parent = parent;
+	public K getKey() {
+		return key;
 	}
 	
-	public E getElement() {
-		return element;
+	public void setKey(K value) {
+		this.key = value;
 	}
-	
-	public void setElement(E element) {
-		this.element = element;
+
+	public ArrayList<V> getValue() {
+		return value;
 	}
-	
-	public TreeNode<E> getParent() {
-		return parent;
+
+	public void setValue(ArrayList<V> value) {
+		this.value = value;
 	}
-	
-	public void setParent(TreeNode<E> parent) {
-		this.parent = parent;
-	}
-	
-	public TreeNode<E> getLeft() {
-		return left;
-	}
-	
-	public void setLeft(TreeNode<E> left) {
-		this.left = left;
-	}
-	
-	public TreeNode<E> getRight() {
+
+	public TreeNode<K,V> getRight() {
 		return right;
 	}
-	
-	public void setRight(TreeNode<E> right) {
+
+	public void setRight(TreeNode<K,V> right) {
 		this.right = right;
 	}
+
+	public TreeNode<K,V> getLeft() {
+		return left;
+	}
+
+	public void setLeft(TreeNode<K,V> left) {
+		this.left = left;
+	}
+	public TreeNode<K,V> getParent() {
+		return parent;
+	}
+
+	public void setParent(TreeNode<K,V> parent) {
+		this.parent = parent;
+	}
+
+	@Override
+	public int compareTo(K o) {
+		return key.compareTo(o);
+	}
+	
+	public boolean isLeaf() {
+		return right == null && left == null;
+	}
+	
+	public boolean hasOneChild() {
+		return (right == null && left != null)||(right != null && left == null); 
+	}
+	
+
+
+	
 	
 }
