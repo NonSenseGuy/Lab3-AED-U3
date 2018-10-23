@@ -264,8 +264,59 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 		return y;
 	}
 	
-	private void deleteFixUp(RBTreeNode<K,V> z) {
-		
+	private void deleteFixUp(RBTreeNode<K,V> x) {
+		RBTreeNode<K,V> w;
+		while(root != x && x.isColor() == RBTreeNode.BLACK) {
+			if(x == x.getParent().getLeft()) {
+				w = x.getParent().getRight();
+				if(w.isColor() == RBTreeNode.RED) {
+					w.setColor(RBTreeNode.BLACK);
+					x.getParent().setColor(RBTreeNode.RED);
+					leftRotate(x);
+					w = x.getParent().getRight();
+				}
+				if(w.getLeft().isColor() == RBTreeNode.BLACK && w.getRight().isColor() == RBTreeNode.BLACK) {
+					w.setColor(RBTreeNode.RED);
+					x = x.getParent();
+				}else {
+					if(w.getRight().isColor() == RBTreeNode.BLACK) {
+						w.getLeft().setColor(RBTreeNode.BLACK);
+						w.setColor(RBTreeNode.RED);
+						rightRotate(w);
+						w = x.getParent();
+					}
+					w.setColor(x.getParent().isColor());
+					x.getParent().setColor(RBTreeNode.BLACK);
+					w.getRight().setColor(RBTreeNode.BLACK);
+					leftRotate(x.getParent());
+					x = root;
+				}
+			}else {
+				w = x.getParent().getLeft();
+				if(w.isColor() == RBTreeNode.RED) {
+					w.setColor(RBTreeNode.BLACK);
+					x.getParent().setColor(RBTreeNode.RED);
+					rightRotate(x);
+					w = x.getParent().getLeft();
+				}
+				if(w.getLeft().isColor() == RBTreeNode.BLACK && w.getRight().isColor() == RBTreeNode.BLACK) {
+					w.setColor(RBTreeNode.RED);
+					x = x.getParent();
+				}else {
+					if(w.getLeft().isColor() == RBTreeNode.BLACK) {
+						w.getRight().setColor(RBTreeNode.BLACK);
+						w.setColor(RBTreeNode.RED);
+						leftRotate(w);
+						w = x.getParent();
+					}
+					w.setColor(x.getParent().isColor());
+					x.getParent().setColor(RBTreeNode.BLACK);
+					w.getLeft().setColor(RBTreeNode.BLACK);
+					rightRotate(x.getParent());
+					x = root;
+				}
+			}
+		}x.setColor(RBTreeNode.BLACK);
 	}
 	
 	
