@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aed.lab3.controller.FXMLControllerFirst">
+   <children>
+      <Button fx:id="butStartCero" layoutX="204.0" layoutY="144.0" mnemonicParsing="false" onAction="#startScratch" text="Start from scratch">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="butCsvFile" layoutX="215.0" layoutY="194.0" mnemonicParsing="false" text="Import CSV file">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="butStartData" layoutX="176.0" layoutY="242.0" mnemonicParsing="false" text="Start with previous data">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

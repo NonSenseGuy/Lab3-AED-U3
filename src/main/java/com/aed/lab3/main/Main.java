@@ -15,7 +15,7 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		Parent root = FXMLLoader.load(getClass().getResource("/view/window.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/view/firstScreen.fxml"));
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("FIBA");
