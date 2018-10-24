@@ -79,5 +79,8 @@ public class Player {
 		this.blocks = blocks;
 	}
 	
+	public String toString() {
+		return this.name + " " + this.team + " " + this.age;
+	}
 	
 }
