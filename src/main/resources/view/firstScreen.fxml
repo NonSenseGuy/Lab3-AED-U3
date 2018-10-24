@@ -13,7 +13,7 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="butCsvFile" layoutX="215.0" layoutY="194.0" mnemonicParsing="false" text="Import CSV file">
+      <Button fx:id="butCsvFile" layoutX="215.0" layoutY="194.0" mnemonicParsing="false" onAction="#chargeCsv" text="Import CSV file">
          <font>
             <Font size="17.0" />
          </font>
