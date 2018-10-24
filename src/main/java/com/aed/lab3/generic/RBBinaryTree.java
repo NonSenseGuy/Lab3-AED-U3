@@ -1,7 +1,5 @@
 package com.aed.lab3.generic;
 
-import javafx.util.Pair;
-
 public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInterface<K,V>{
 	
 	private RBTreeNode<K,V> root;
