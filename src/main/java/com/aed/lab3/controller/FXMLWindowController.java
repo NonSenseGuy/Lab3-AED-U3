@@ -1,23 +1,11 @@
 package com.aed.lab3.controller;
 
-import java.io.File;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 
 public class FXMLWindowController implements Initializable{
 
@@ -38,6 +26,9 @@ public class FXMLWindowController implements Initializable{
 
     @FXML
     private Label labBlocks;
+    
+    @FXML
+    private ComboBox<String> searchChoice;
 
     @FXML
     private Label labAge;
@@ -47,10 +38,10 @@ public class FXMLWindowController implements Initializable{
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-//		searchChoice.getItems().add("Points per Match");
-//		searchChoice.getItems().add("Rebounds per Match");
-//		searchChoice.getItems().add("Assistances per Match");
-//		searchChoice.getItems().add("Steals per Match");
-//		searchChoice.getItems().add("Blocks per Match");
+    	searchChoice.getItems().add("Points per Match");
+    	searchChoice.getItems().add("Rebounds per Match");
+    	searchChoice.getItems().add("Assists per Match");
+    	searchChoice.getItems().add("Steals per Match");
+    	searchChoice.getItems().add("Blocks per Match");
 	}
 }
