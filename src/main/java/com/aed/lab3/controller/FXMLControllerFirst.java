@@ -1,5 +1,8 @@
 package com.aed.lab3.controller;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -35,6 +38,33 @@ public class FXMLControllerFirst {
     @FXML
     void chargeCsv(ActionEvent event) {
     	fileChooser = new FileChooser();
-    	fileChooser.getExtensionFilters().addAll(new ExtensionFilter("CSV Files", ".csv"));
+    	fileChooser.getExtensionFilters().addAll(new ExtensionFilter("All files", "*.*"));
+		File file = fileChooser.showOpenDialog(null);
+		
+		if(file != null) {
+			String path = file.getAbsolutePath();
+			readCSV(path);
+		}
+    }
+    
+    private void readCSV(String path) {
+    	
+    	String currentLine = "";
+    	int limit = 0;
+    	
+    	try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			
+			while((currentLine = br.readLine()) != null && limit <= 50) {
+				String[] information = currentLine.split(",");
+				System.out.println(information[30]);
+				limit++;
+			}
+			
+			if(br != null) br.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 }
