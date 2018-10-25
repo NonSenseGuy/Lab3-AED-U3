@@ -171,7 +171,7 @@ public class League {
     	
     }
     
-    public ArrayList<Player> serachLessRB(double search, String typeData) throws IOException{
+    public ArrayList<Player> searchLessRB(double search, String typeData) throws IOException{
     	
     	ArrayList<Player> players = new ArrayList<>();
     	RBTreeNode aux = typeData.equals("Points% per Match") ? (RBTreeNode<Double, String>) 
@@ -208,7 +208,7 @@ public class League {
 		return temp;
     }
 
-	public ArrayList<Player> serachLessBST(double data, String typeData) throws IOException {
+	public ArrayList<Player> searchLessBST(double data, String typeData) throws IOException {
 		ArrayList<Player> players = new ArrayList<>();
 		
     	TreeNode aux = typeData.equals("Points% per Match") ? (TreeNode<Double, String>) 
@@ -227,7 +227,7 @@ public class League {
     	return players;
 	}
 
-	public ArrayList<Player> serachLessAVL(double data, String typeData) throws IOException {
+	public ArrayList<Player> searchLessAVL(double data, String typeData) throws IOException {
 		ArrayList<Player> players = new ArrayList<>();
 		
     	AVLTreeNode aux = typeData.equals("Rebounds% per Match") ? (AVLTreeNode<Double, String>) 
@@ -244,5 +244,35 @@ public class League {
     			astTree.successor((Double) aux.getKey());
     	}
     	return players;
+	}
+
+	public void searchGreaterAVL(double data, String typeData) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void searchAVL(double data, String typeData) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void searchGreaterRB(double data, String typeData) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void searchRB(double data, String typeData) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void searchGreaterBST(double data, String typeData) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void searchBST(double data, String typeData) {
+		// TODO Auto-generated method stub
+		
 	}
 }

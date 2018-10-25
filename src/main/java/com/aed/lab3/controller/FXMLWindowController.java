@@ -150,25 +150,25 @@ public class FXMLWindowController implements Initializable{
     		
     		if(typeDE == "AVL Tree") {
     			if(logic == "Less") {
-    				league.serachLessAVL(data, typeData);
+    				league.searchLessAVL(data, typeData);
     			}else if(logic == "Greater") {
-    				league.serachGreaterAVL(data, typeData);
+    				league.searchGreaterAVL(data, typeData);
     			}else if(logic == "Equal") {
     				league.searchAVL(data, typeData);
     			}
     		}else if(typeDE == "Red-Black Tree") {
     			if(logic == "Less") {
-    				league.serachLessRB(data, typeData);
+    				league.searchLessRB(data, typeData);
     			}else if(logic == "Greater") {
-    				league.serachGreaterRB(data, typeData);
+    				league.searchGreaterRB(data, typeData);
     			}else if(logic == "Equal") {
     				league.searchRB(data, typeData);
     			}
     		}else if(typeDE == "Binary Search Tree") {
     			if(logic == "Less") {
-    				league.serachLessBST(data, typeData);
+    				league.searchLessBST(data, typeData);
     			}else if(logic == "Greater") {
-    				league.serachGreaterBST(data, typeData);
+    				league.searchGreaterBST(data, typeData);
     			}else if(logic == "Equal") {
     				league.searchBST(data, typeData);
     			}
