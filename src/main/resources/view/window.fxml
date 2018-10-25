@@ -34,11 +34,11 @@
             <Label text="Name" />
             <Label text="Age" GridPane.rowIndex="1" />
             <Label text="Team" GridPane.rowIndex="2" />
-            <Label text="Points per Match" GridPane.rowIndex="3" />
-            <Label text="Rebound per Match" GridPane.rowIndex="4" />
-            <Label text="Assists per Match" GridPane.rowIndex="5" />
-            <Label text="Steals per Match" GridPane.rowIndex="6" />
-            <Label text="Blocks per Match" GridPane.rowIndex="7" />
+            <Label text="Points% per Match" GridPane.rowIndex="3" />
+            <Label text="Rebound% per Match" GridPane.rowIndex="4" />
+            <Label text="Assists% per Match" GridPane.rowIndex="5" />
+            <Label text="Steals% per Match" GridPane.rowIndex="6" />
+            <Label text="Blocks% per Match" GridPane.rowIndex="7" />
             <Label fx:id="labName" GridPane.columnIndex="1" />
             <Label fx:id="labAge" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="labTeam" GridPane.columnIndex="1" GridPane.rowIndex="2" />
