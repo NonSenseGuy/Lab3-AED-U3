@@ -3,13 +3,18 @@ package com.aed.lab3.main;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.aed.lab3.generic.AVLTree;
+import com.aed.lab3.generic.AVLTreeNode;
 import com.aed.lab3.generic.BinaryTree;
 import com.aed.lab3.generic.RBBinaryTree;
+import com.aed.lab3.generic.RBTreeNode;
+import com.aed.lab3.generic.TreeNode;
 
 public class League {
 	
@@ -165,4 +170,79 @@ public class League {
     	if(fw != null) fw.close();
     	
     }
+    
+    public ArrayList<Player> serachLessRB(double search, String typeData) throws IOException{
+    	
+    	ArrayList<Player> players = new ArrayList<>();
+    	RBTreeNode aux = typeData.equals("Points% per Match") ? (RBTreeNode<Double, String>) 
+    			pointsTree.min(pointsTree.getRoot()) : stealsTree.min(stealsTree.getRoot());
+    	
+    	while(aux.getKey().compareTo(search) == -1) {
+    		
+    		ArrayList<String> playerNode = aux.getValue();
+    		
+    		for(int i = 0; i < playerNode.size(); i++) {
+    			players.add(chargePlainText(playerNode.get(i)));
+    		}
+    		aux = typeData.equals("Points% per Match") ? pointsTree.successor((Double) aux.getKey()) : 
+    			stealsTree.successor((Double) aux.getKey());
+    	}
+    	return players;
+    }
+    
+    public Player chargePlainText(String fileName) throws IOException {
+    	
+    	FileReader fl = new FileReader("./src/main/resources/last/" + fileName + ".txt");
+		BufferedReader br = new BufferedReader(fl);
+		
+		String[] information = br.readLine().split(",");
+		
+		Player temp = new Player(information[0], information[1], Integer.valueOf(information[2]),
+				Double.valueOf(information[3]), Double.valueOf(information[4]), 
+				Double.valueOf(information[5]), Double.valueOf(information[6]), 
+				Double.valueOf(information[7]));
+		
+		if(br != null) br.close();
+		if(fl != null) fl.close();
+		
+		return temp;
+    }
+
+	public ArrayList<Player> serachLessBST(double data, String typeData) throws IOException {
+		ArrayList<Player> players = new ArrayList<>();
+		
+    	TreeNode aux = typeData.equals("Points% per Match") ? (TreeNode<Double, String>) 
+    			bstPointsTree.min(bstPointsTree.getRoot()) : bstAstTree.min(bstAstTree.getRoot());
+    	
+    	while(aux.getKey().compareTo(data) == -1) {
+    		
+    		ArrayList<String> playerNode = aux.getValue();
+    		
+    		for(int i = 0; i < playerNode.size(); i++) {
+    			players.add(chargePlainText(playerNode.get(i)));
+    		}
+    		aux = typeData.equals("Points% per Match") ? bstPointsTree.successor((Double) aux.getKey()) : 
+    			bstAstTree.successor((Double) aux.getKey());
+    	}
+    	return players;
+	}
+
+	public ArrayList<Player> serachLessAVL(double data, String typeData) throws IOException {
+		ArrayList<Player> players = new ArrayList<>();
+		
+    	AVLTreeNode aux = typeData.equals("Rebounds% per Match") ? (AVLTreeNode<Double, String>) 
+    			rbdTree.min(rbdTree.getRoot()) : astTree.min(astTree.getRoot());
+    	
+    	while(aux.getKey().compareTo(data) == -1) {
+    		
+    		ArrayList<String> playerNode = aux.getValue();
+    		
+    		for(int i = 0; i < playerNode.size(); i++) {
+    			players.add(chargePlainText(playerNode.get(i)));
+    		}
+    		aux = typeData.equals("Rebounds% per Match") ? rbdTree.successor((Double) aux.getKey()) : 
+    			astTree.successor((Double) aux.getKey());
+    	}
+    	return players;
+	}
 }
