@@ -100,6 +100,7 @@ public class League {
 						Double.valueOf(information[14]), Double.valueOf(information[15]));
 				
 				plainText(counter, temp);
+				chargeCsv("./src/main/resources/last/" + counter + ".txt");
 				counter++;
 			}
 			
@@ -109,6 +110,29 @@ public class League {
 			e.printStackTrace();
 		}
     }
+	
+	public void chargeCsv(String path) throws IOException {
+		FileReader fl = new FileReader(path);
+		BufferedReader br = new BufferedReader(fl);
+		
+		String[] information = br.readLine().split(",");
+		
+		double rebounds = Double.valueOf(information[10]) + Double.valueOf(information[11]);
+		Player temp = new Player(information[2], information[1], Integer.valueOf(information[3]),
+				Double.valueOf(information[30]), rebounds, Double.valueOf(information[13]), 
+				Double.valueOf(information[14]), Double.valueOf(information[15]));
+		
+		if(br != null) br.close();
+		if(fl != null) fl.close();
+		
+		pointsTree.insert(temp.getPoints(), path);
+		stealsTree.insert(temp.getSteals(), path);
+		rbdTree.insert(temp.getRebounds(), path);
+		astTree.insert(temp.getAssists(), path);
+		bstPointsTree.insert(temp.getPoints(), path);
+		bstAstTree.insert(temp.getAssists(), path);
+		
+	}
     
     public void plainText(int counter, Player player) throws IOException {
     	File file = new File( "./src/main/resources/last/" + counter + ".txt");

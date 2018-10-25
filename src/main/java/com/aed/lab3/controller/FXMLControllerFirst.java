@@ -8,14 +8,15 @@ import com.aed.lab3.main.League;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 public class FXMLControllerFirst {
-	
-	private League league;
 	
 	@FXML
     private Button butStartData;
@@ -33,12 +34,22 @@ public class FXMLControllerFirst {
     
     @FXML
     void startScratch(ActionEvent event) throws IOException {
-    	AnchorPane pane = FXMLLoader.load(getClass().getResource("/view/window.fxml"));
-    	rootPane.getChildren().setAll(pane);
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("/view/window.fxml"));
+    	loader.load();
+    	
+    	FXMLWindowController window = loader.getController();
+    	window.setLeague(new League());
+    	
+    	Parent parent = loader.getRoot();
+    	Stage stage =  new Stage();
+    	stage.setScene(new Scene(parent));
+    	stage.setTitle("FIBA");
+    	stage.showAndWait();
     }
     
     @FXML
-    void chargeCsv(ActionEvent event) {
+    void chargeCsv(ActionEvent event) throws IOException {
     	fileChooser = new FileChooser();
     	fileChooser.getExtensionFilters().addAll(new ExtensionFilter("All files", "*.*"));
 		File file = fileChooser.showOpenDialog(null);
@@ -49,9 +60,21 @@ public class FXMLControllerFirst {
 		}
     }
     
-    private void createLeagueCsv(String path) {
-    	this.league = new League();
-    	this.league.readCSV(path);
+    private void createLeagueCsv(String path) throws IOException {
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("/view/window.fxml"));
+    	loader.load();
+    	
+    	FXMLWindowController window = loader.getController();
+    	window.setLeague(new League());
+    	window.getLeague().readCSV(path);
+    	
+    	Parent parent = loader.getRoot();
+    	Stage stage =  new Stage();
+    	stage.setScene(new Scene(parent));
+    	stage.setTitle("FIBA");
+    	stage.showAndWait();
+    	
     }
     
     
