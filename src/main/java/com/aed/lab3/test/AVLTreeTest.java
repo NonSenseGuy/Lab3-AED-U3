@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import com.aed.lab3.generic.AVLTree;
+import com.aed.lab3.generic.Node;
 
 class AVLTreeTest {
 	
@@ -12,7 +13,7 @@ class AVLTreeTest {
 
 	void setup() {
 		tree = new AVLTree<>();
-		tree.insert(1.0, "1.0");
+		tree.insert(new Node<Double,String>(1.0, "1.0"));
 	}
 	
 	@Test
@@ -27,18 +28,12 @@ class AVLTreeTest {
 		setup();
 		assertTrue(tree.getRoot().getKey()  == tree.search(1.0).getKey());
 	}
-	
-	@Test
-	void delete1Test() {
-		setup();
-		tree.delete(1.0, "1.0");
-		assertTrue(tree.getRoot() == null);
-	}
+
 	
 	void setup2() {
 		setup();
 		for (double i = 2; i < 10; i++) {
-			tree.insert(i, "" + i);
+			tree.insert(new Node<Double,String>(i, "" + i));
 		}
 	}
 	
@@ -52,13 +47,6 @@ class AVLTreeTest {
 	void search2Test() {
 		setup2();
 		assertTrue(tree.search(6.0) == tree.getRoot().getRight());
-	}
-	
-	@Test
-	void delete2Test(){
-		setup2();
-		tree.delete(4.0, "4.0");
-		assertTrue(tree.getRoot().getKey() == 3.0);
 	}
 
 }

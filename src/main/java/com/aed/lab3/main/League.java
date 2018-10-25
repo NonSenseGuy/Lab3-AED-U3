@@ -230,12 +230,12 @@ public class League {
 	public ArrayList<Player> searchLessAVL(double data, String typeData) throws IOException {
 		ArrayList<Player> players = new ArrayList<>();
 		
-    	AVLTreeNode<Double,String> aux = typeData.equals("Rebounds% per Match") ?
+    	Node<Double,String> aux = typeData.equals("Rebounds% per Match") ?
     			rbdTree.min(rbdTree.getRoot()) : astTree.min(astTree.getRoot());
     	
-    	while(aux.getKey().compareTo(data) == -1) {
+    	while(aux.getKey() < data) {
     		
-    		ArrayList<String> playerNode = aux.getValue();
+    		ArrayList<String> playerNode = aux.;
     		
     		for(int i = 0; i < playerNode.size(); i++) {
     			players.add(chargePlainText(playerNode.get(i)));
@@ -246,8 +246,8 @@ public class League {
     	return players;
 	}
 
-	public void searchGreaterAVL(double data, String typeData) {
-		
+	public ArrayList<Player> searchGreaterAVL(double data, String typeData) {
+		return null;
 	}
 
 	public ArrayList<Player> searchAVL(double data, String typeData) throws IOException{

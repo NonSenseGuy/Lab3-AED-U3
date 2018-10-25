@@ -22,6 +22,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
 
+@SuppressWarnings("restriction")
 public class FXMLWindowController implements Initializable{
 	
 	private League league;
@@ -143,12 +144,12 @@ public class FXMLWindowController implements Initializable{
     @FXML
     void searchPlayer(ActionEvent event) {
     	try {
-    		ArrayList<Player> players;
+    		ArrayList<Player> players = null;
     		String typeDE = typeDataStructure.getSelectionModel().getSelectedItem();
     		String typeData = searchChoice.getSelectionModel().getSelectedItem();
     		String logic = condition.getSelectionModel().getSelectedItem();
     		double data = Double.valueOf(parameter.getText());
-    		
+   
     		if(typeDE == "AVL Tree") {
     			if(logic == "Less") {
     				players = league.searchLessAVL(data, typeData);

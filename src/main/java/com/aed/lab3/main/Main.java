@@ -1,16 +1,12 @@
 package com.aed.lab3.main;
 
-import com.aed.lab3.generic.AVLTree;
-import com.aed.lab3.generic.AVLTreeNode;
-import com.aed.lab3.generic.RBBinaryTree;
-import com.aed.lab3.generic.RBTreeNode;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+@SuppressWarnings("restriction")
 public class Main extends Application{
 	
 	public static void main(String[] args) {
@@ -26,19 +22,6 @@ public class Main extends Application{
 		primaryStage.setTitle("FIBA");
 		primaryStage.show();
 	}
-	
-	static void printInorder(AVLTreeNode<Double,String> node) {
-	     if (node == null)
-	            return; 
-	  
-	        /* first recur on left child */
-	        printInorder(node.getLeft()); 
-	  
-	        /* then print the data of node */
-	        System.out.println(node.getKey() + " " + node.getValue()); 
-	  
-	        /* now recur on right child */
-	        printInorder(node.getRight()); 
-	}
+
 	
 }
