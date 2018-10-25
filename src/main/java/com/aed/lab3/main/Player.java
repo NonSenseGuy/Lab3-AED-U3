@@ -3,10 +3,11 @@ package com.aed.lab3.main;
 public class Player {
 	
 	private String name, team;
-	private int age, points, rebounds, assists, steals, blocks;
+	private int age;
+	private double points, rebounds, assists, steals, blocks;
 	
-	public Player(String name, String team, int age, int points, int rebounds, int assists, 
-			int steals, int blocks) {
+	public Player(String name, String team, int age, double points, double rebounds, double assists, 
+			double steals, double blocks) {
 		this.name = name;
 		this.team = team;
 		this.age = age;
@@ -41,43 +42,43 @@ public class Player {
 		this.age = age;
 	}
 
-	public int getPoints() {
+	public double getPoints() {
 		return points;
 	}
 
-	public void setPoints(int points) {
+	public void setPoints(double points) {
 		this.points = points;
 	}
 
-	public int getRebounds() {
+	public double getRebounds() {
 		return rebounds;
 	}
 
-	public void setRebounds(int rebounds) {
+	public void setRebounds(double rebounds) {
 		this.rebounds = rebounds;
 	}
 
-	public int getAssists() {
+	public double getAssists() {
 		return assists;
 	}
 
-	public void setAssists(int assists) {
+	public void setAssists(double assists) {
 		this.assists = assists;
 	}
 
-	public int getSteals() {
+	public double getSteals() {
 		return steals;
 	}
 
-	public void setSteals(int steals) {
+	public void setSteals(double steals) {
 		this.steals = steals;
 	}
 
-	public int getBlocks() {
+	public double getBlocks() {
 		return blocks;
 	}
 
-	public void setBlocks(int blocks) {
+	public void setBlocks(double blocks) {
 		this.blocks = blocks;
 	}
 	

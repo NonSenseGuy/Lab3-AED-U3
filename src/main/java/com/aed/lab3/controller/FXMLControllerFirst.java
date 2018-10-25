@@ -58,12 +58,16 @@ public class FXMLControllerFirst {
     	
     	try {
 			BufferedReader br = new BufferedReader(new FileReader(path));
-			
+			br.readLine();
 			while((currentLine = br.readLine()) != null) {
 				String[] information = currentLine.split(",");
-				//Player temp = new Player();
-				//plainText(counter, temp);
-				// Shots System.out.println(information[30]);
+				double rebounds = Double.valueOf(information[10]) + Double.valueOf(information[11]);
+				
+				Player temp = new Player(information[2], information[1], Integer.valueOf(information[3]),
+						Double.valueOf(information[30]), rebounds, Double.valueOf(information[13]), 
+						Double.valueOf(information[14]), Double.valueOf(information[15]));
+				
+				plainText(counter, temp);
 				counter++;
 			}
 			
@@ -75,7 +79,7 @@ public class FXMLControllerFirst {
     }
     
     public void plainText(int counter, Player player) throws IOException {
-    	File file = new File( "/last/" + counter + ".txt");
+    	File file = new File( "./src/main/resources/last/" + counter + ".txt");
     	
     	if(!file.exists()) file.createNewFile();
     	
@@ -86,7 +90,7 @@ public class FXMLControllerFirst {
     			player.getPoints() + "," + player.getRebounds() + "," + player.getAssists() + ","
     			+ player.getSteals() + "," + player.getBlocks());
     
-    	if(writer != null)writer.close();
+    	if(writer != null) writer.close();
     	if(fw != null) fw.close();
     }
 }
