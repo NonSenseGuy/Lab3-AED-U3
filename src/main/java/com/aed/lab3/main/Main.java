@@ -32,7 +32,8 @@ public class Main extends Application{
 		this.league = league;
 	}
 	
-	public void createLeague(int i) {
-		league = new League(i);
+	public void createLeague(String path) {
+		league = new League();
+		league.readCSV(path);
 	}
 }
