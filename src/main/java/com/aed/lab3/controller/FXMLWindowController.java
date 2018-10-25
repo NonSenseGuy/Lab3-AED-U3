@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.aed.lab3.main.League;
+import com.aed.lab3.main.Player;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.StageStyle;
 
@@ -33,7 +36,13 @@ public class FXMLWindowController implements Initializable{
     private ComboBox<String> condition;
     
     @FXML
-    private Button addPlayer;
+    private ListView<Player> listPlayers;
+    
+    @FXML
+    private Button addPlayer, butSearch;
+    
+    @FXML
+    private TextField parameter;
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -126,6 +135,31 @@ public class FXMLWindowController implements Initializable{
     	dialog.setContentText("Please enter the " + hint + ": ");
     	dialog.initStyle(StageStyle.UTILITY);
     	return dialog;
+    }
+    
+    @FXML
+    void searchPlayer(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void changeDataSearch(ActionEvent event) {
+    	searchChoice.getItems().clear();
+    	if(typeDataStructure.getValue() == "AVL Tree") {
+    		searchChoice.getItems().add("Rebounds% per Match");
+        	searchChoice.getItems().add("Assists% per Match");
+    	}else if(typeDataStructure.getValue() == "Red-Black Tree") {
+    		searchChoice.getItems().add("Points% per Match");
+        	searchChoice.getItems().add("Steals% per Match");
+    	}else if(typeDataStructure.getValue() == "Binary Search Tree") {
+    		searchChoice.getItems().add("Points% per Match");
+        	searchChoice.getItems().add("Assists% per Match");
+    	}else {
+    		searchChoice.getItems().add("Points% per Match");
+        	searchChoice.getItems().add("Rebounds% per Match");
+        	searchChoice.getItems().add("Assists% per Match");
+        	searchChoice.getItems().add("Steals% per Match");
+    	}
     }
     
 }
