@@ -262,23 +262,23 @@ public class League {
 		
 	}
 
-	public void searchGreaterRB(double data, String typeData) {
+	public ArrayList<Player> searchGreaterRB(double data, String typeData) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
-	public void searchRB(double data, String typeData) {
+	public ArrayList<Player> searchRB(double data, String typeData) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
-	public void searchGreaterBST(double data, String typeData) {
+	public ArrayList<Player> searchGreaterBST(double data, String typeData) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
-	public void searchBST(double data, String typeData) {
+	public ArrayList<Player> searchBST(double data, String typeData) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 }

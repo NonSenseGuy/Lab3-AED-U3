@@ -143,6 +143,7 @@ public class FXMLWindowController implements Initializable{
     @FXML
     void searchPlayer(ActionEvent event) {
     	try {
+    		ArrayList<Player> players;
     		String typeDE = typeDataStructure.getSelectionModel().getSelectedItem();
     		String typeData = searchChoice.getSelectionModel().getSelectedItem();
     		String logic = condition.getSelectionModel().getSelectedItem();
@@ -150,29 +151,31 @@ public class FXMLWindowController implements Initializable{
     		
     		if(typeDE == "AVL Tree") {
     			if(logic == "Less") {
-    				league.searchLessAVL(data, typeData);
+    				players = league.searchLessAVL(data, typeData);
     			}else if(logic == "Greater") {
-    				league.searchGreaterAVL(data, typeData);
+    				players = league.searchGreaterAVL(data, typeData);
     			}else if(logic == "Equal") {
-    				league.searchAVL(data, typeData);
+    				players = league.searchAVL(data, typeData);
     			}
     		}else if(typeDE == "Red-Black Tree") {
     			if(logic == "Less") {
-    				league.searchLessRB(data, typeData);
+    				players = league.searchLessRB(data, typeData);
     			}else if(logic == "Greater") {
-    				league.searchGreaterRB(data, typeData);
+    				players = league.searchGreaterRB(data, typeData);
     			}else if(logic == "Equal") {
-    				league.searchRB(data, typeData);
+    				players = league.searchRB(data, typeData);
     			}
     		}else if(typeDE == "Binary Search Tree") {
     			if(logic == "Less") {
-    				league.searchLessBST(data, typeData);
+    				players = league.searchLessBST(data, typeData);
     			}else if(logic == "Greater") {
-    				league.searchGreaterBST(data, typeData);
+    				players = league.searchGreaterBST(data, typeData);
     			}else if(logic == "Equal") {
-    				league.searchBST(data, typeData);
+    				players = league.searchBST(data, typeData);
     			}
     		}
+    		
+    		fillListView(players);
     		
     	}catch(Exception e) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -182,7 +185,14 @@ public class FXMLWindowController implements Initializable{
     	}
     }
     
-    @FXML
+    private void fillListView(ArrayList<Player> players) {
+		listPlayers.getItems().clear();
+		for(int i = 0; i < players.size(); i++) {
+			listPlayers.getItems().add(players.get(i));
+		}
+	}
+
+	@FXML
     void changeDataSearch(ActionEvent event) {
     	searchChoice.getItems().clear();
     	if(typeDataStructure.getValue() == "AVL Tree") {
