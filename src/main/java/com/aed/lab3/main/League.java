@@ -83,7 +83,7 @@ public class League {
 			double steals, double blocks) throws IOException {
 		
 		Player temp = new Player(name, team, age, points, rebounds, assists, steals, blocks);
-		this.maxValuePath ++;
+
 		plainText(maxValuePath, temp);
 		String path = "./src/main/resources/last/" + maxValuePath + ".txt";
 		
@@ -93,6 +93,8 @@ public class League {
 		astTree.insert(temp.getAssists(), path);
 		bstPointsTree.insert(temp.getPoints(), path);
 		bstAstTree.insert(temp.getAssists(), path);
+		
+		this.maxValuePath += 1;
 	}
 	
 	public void readCSV(String path) {
@@ -115,8 +117,9 @@ public class League {
 				chargeCsv("./src/main/resources/last/" + counter + ".txt");
 				counter++;
 			}
-			this.maxValuePath = counter;
+		
 			if(br != null) br.close();
+			this.maxValuePath = counter;
 			
 		}catch (Exception e) {
 			e.printStackTrace();
