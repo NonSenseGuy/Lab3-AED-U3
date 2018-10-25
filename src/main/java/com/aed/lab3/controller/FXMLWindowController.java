@@ -34,6 +34,9 @@ public class FXMLWindowController implements Initializable{
     
     @FXML
     private ComboBox<String> searchChoice;
+    
+    @FXML
+    private ComboBox<String> typeDataStructure;
 
     @FXML
     private Label labAge;
@@ -49,6 +52,10 @@ public class FXMLWindowController implements Initializable{
     	searchChoice.getItems().add("Assists% per Match");
     	searchChoice.getItems().add("Steals% per Match");
     	searchChoice.getItems().add("Blocks% per Match");
+    	
+    	typeDataStructure.getItems().add("AVL Tree");
+    	typeDataStructure.getItems().add("Red-Black Tree");
+    	typeDataStructure.getItems().add("Binary Search Tree");
 
 	}
     
