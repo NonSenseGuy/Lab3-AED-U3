@@ -2,6 +2,7 @@ package com.aed.lab3.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -11,12 +12,14 @@ import com.aed.lab3.main.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
 
 public class FXMLWindowController implements Initializable{
@@ -57,7 +60,7 @@ public class FXMLWindowController implements Initializable{
     	typeDataStructure.getItems().add("Binary Search Tree");
     	
     	condition.getItems().add("Equal");
-    	condition.getItems().add("Grater");
+    	condition.getItems().add("Greater");
     	condition.getItems().add("Less");
 
 	}
@@ -139,7 +142,44 @@ public class FXMLWindowController implements Initializable{
     
     @FXML
     void searchPlayer(ActionEvent event) {
-
+    	try {
+    		String typeDE = typeDataStructure.getSelectionModel().getSelectedItem();
+    		String typeData = searchChoice.getSelectionModel().getSelectedItem();
+    		String logic = condition.getSelectionModel().getSelectedItem();
+    		double data = Double.valueOf(parameter.getText());
+    		
+    		if(typeDE == "AVL Tree") {
+    			if(logic == "Less") {
+    				league.serachLessAVL(data, typeData);
+    			}else if(logic == "Greater") {
+    				league.serachGreaterAVL(data, typeData);
+    			}else if(logic == "Equal") {
+    				league.searchAVL(data, typeData);
+    			}
+    		}else if(typeDE == "Red-Black Tree") {
+    			if(logic == "Less") {
+    				league.serachLessRB(data, typeData);
+    			}else if(logic == "Greater") {
+    				league.serachGreaterRB(data, typeData);
+    			}else if(logic == "Equal") {
+    				league.searchRB(data, typeData);
+    			}
+    		}else if(typeDE == "Binary Search Tree") {
+    			if(logic == "Less") {
+    				league.serachLessBST(data, typeData);
+    			}else if(logic == "Greater") {
+    				league.serachGreaterBST(data, typeData);
+    			}else if(logic == "Equal") {
+    				league.searchBST(data, typeData);
+    			}
+    		}
+    		
+    	}catch(Exception e) {
+    		Alert alert = new Alert(AlertType.CONFIRMATION);
+        	alert.setTitle("Confirmation Dialog");
+        	alert.setHeaderText(null);
+        	alert.setContentText("There are fields that incorrect. Check.");
+    	}
     }
     
     @FXML
