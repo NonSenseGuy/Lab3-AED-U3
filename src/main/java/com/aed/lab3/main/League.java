@@ -124,6 +124,7 @@ public class League {
     
     	if(writer != null) writer.close();
     	if(fw != null) fw.close();
+    	
     	System.out.println(player.toString());
     }
 }
