@@ -189,7 +189,7 @@ public class League {
     
     public Player chargePlainText(String fileName) throws IOException {
     	
-    	FileReader fl = new FileReader("./src/main/resources/last/" + fileName + ".txt");
+    	FileReader fl = new FileReader(fileName);
 		BufferedReader br = new BufferedReader(fl);
 		
 		String[] information = br.readLine().split(",");

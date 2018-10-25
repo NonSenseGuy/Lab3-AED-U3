@@ -159,7 +159,6 @@ public class FXMLWindowController implements Initializable{
     			}
     		}else if(typeDE.equals("Red-Black Tree")) {
     			if(logic.equals("Less")) {
-    				System.out.println("Work");
     				players = league.searchLessRB(data, typeData);
     			}else if(logic == "Greater") {
     				players = league.searchGreaterRB(data, typeData);
