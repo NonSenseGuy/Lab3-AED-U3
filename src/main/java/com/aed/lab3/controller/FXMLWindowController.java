@@ -2,12 +2,17 @@ package com.aed.lab3.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.aed.lab3.main.League;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
 public class FXMLWindowController implements Initializable{
+	
+	private League league;
 
     @FXML
     private Label labRebound;
@@ -38,10 +43,19 @@ public class FXMLWindowController implements Initializable{
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
+    	
     	searchChoice.getItems().add("Points per Match");
     	searchChoice.getItems().add("Rebounds per Match");
     	searchChoice.getItems().add("Assists per Match");
     	searchChoice.getItems().add("Steals per Match");
     	searchChoice.getItems().add("Blocks per Match");
 	}
+    
+    public League getLeague() {
+    	return league;
+    }
+    
+    public void setLeague(League league) {
+    	this.league = league;
+    }
 }

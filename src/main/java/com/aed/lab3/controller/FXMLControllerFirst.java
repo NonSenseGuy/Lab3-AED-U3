@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.aed.lab3.main.League;
+import com.aed.lab3.main.Main;
 import com.aed.lab3.main.Player;
 
 import javafx.event.ActionEvent;
@@ -19,6 +21,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class FXMLControllerFirst {
 	
+	private Main main;
 	@FXML
     private Button butStartData;
 
@@ -47,11 +50,13 @@ public class FXMLControllerFirst {
 		
 		if(file != null) {
 			String path = file.getAbsolutePath();
-			readCSV(path);
+			main.createLeague(readCSV(path)); 
+			
+			
 		}
     }
     
-    private void readCSV(String path) {
+    private int readCSV(String path) {
     	
     	String currentLine = "";
     	int counter = 0;
@@ -72,10 +77,12 @@ public class FXMLControllerFirst {
 			}
 			
 			if(br != null) br.close();
+			return counter;
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+    	return counter;
     }
     
     public void plainText(int counter, Player player) throws IOException {
