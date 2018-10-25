@@ -79,8 +79,17 @@ class RBBTreeTest {
 	@Test
 	void rootTest() {
 		setup4();
-		assertTrue(tree.getRoot().getKey() == 3.0);
+		assertTrue(tree.getRoot().getKey() == 3.0 );
 	}
+	
+	@Test
+	void deleteTest() {
+		setup4();
+		tree.delete(3.0, "3.0");
+		assertTrue(tree.getRoot().getKey() == 5.0);
+	}
+	
+	
 	
 
 	
