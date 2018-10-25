@@ -1,14 +1,9 @@
 package com.aed.lab3.controller;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
-import com.aed.lab3.main.Main;
-import com.aed.lab3.main.Player;
+import com.aed.lab3.main.League;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +15,8 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class FXMLControllerFirst {
 	
-	private Main main;
+	private League league;
+	
 	@FXML
     private Button butStartData;
 
@@ -49,8 +45,13 @@ public class FXMLControllerFirst {
 		
 		if(file != null) {
 			String path = file.getAbsolutePath();
-			main.createLeague(path);			
+			createLeague(path);
 		}
+    }
+    
+    private void createLeague(String path) {
+    	this.league = new League();
+    	this.league.readCSV(path);
     }
     
     

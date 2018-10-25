@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 	
-	private League league;
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -22,18 +20,5 @@ public class Main extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("FIBA");
 		primaryStage.show();
-	}
-	
-	private League getLeague() {
-		return league;
-	}
-	
-	private void setLeague(League league) {
-		this.league = league;
-	}
-	
-	public void createLeague(String path) {
-		league = new League();
-		league.readCSV(path);
 	}
 }
