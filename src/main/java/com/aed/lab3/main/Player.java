@@ -82,6 +82,7 @@ public class Player {
 		this.blocks = blocks;
 	}
 	
+	@Override
 	public String toString() {
 		return this.name + " " + this.team + " " + this.age;
 	}

@@ -22,6 +22,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
 
+@SuppressWarnings("restriction")
 public class FXMLWindowController implements Initializable{
 	
 	private League league;
