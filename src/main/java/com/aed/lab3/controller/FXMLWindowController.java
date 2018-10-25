@@ -38,10 +38,10 @@ public class FXMLWindowController implements Initializable{
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
-    	searchChoice.getItems().add("Points per Match");
-    	searchChoice.getItems().add("Rebounds per Match");
-    	searchChoice.getItems().add("Assists per Match");
-    	searchChoice.getItems().add("Steals per Match");
-    	searchChoice.getItems().add("Blocks per Match");
+    	searchChoice.getItems().add("Points% per Match");
+    	searchChoice.getItems().add("Rebounds% per Match");
+    	searchChoice.getItems().add("Assists% per Match");
+    	searchChoice.getItems().add("Steals% per Match");
+    	searchChoice.getItems().add("Blocks% per Match");
 	}
 }
