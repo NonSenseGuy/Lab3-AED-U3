@@ -1,5 +1,7 @@
 package com.aed.lab3.generic;
 
+import java.util.NoSuchElementException;
+
 public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInterface<K,V>{
 	
 	private RBTreeNode<K,V> root;
@@ -50,7 +52,7 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 		RBTreeNode<K,V> x = root;
 		while(x != nil) {
 			y = x;
-			if(z.compareTo(y.getKey()) < 0) {
+			if(z.compareTo(y) < 0) {
 				x = y.getLeft();
 			}else {
 				x = y.getRight();
@@ -60,7 +62,7 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 		if(y == nil) {
 			root = z;
 		}else {
-			if(z.compareTo(y.getKey()) < 0) {
+			if(z.compareTo(y) < 0) {
 				y.setLeft(z);
 			}else {
 				y.setRight(z);
@@ -150,7 +152,7 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 	}
 
 	@Override
-	public RBTreeNode<K, V> search(K key) {
+	public RBTreeNode<K, V> search(K key){
 		return search(root, key);
 	}
 	

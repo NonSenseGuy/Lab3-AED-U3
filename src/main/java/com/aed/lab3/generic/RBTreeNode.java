@@ -2,7 +2,7 @@ package com.aed.lab3.generic;
 
 import java.util.ArrayList;
 
-public class RBTreeNode<K extends Comparable<K>,V> implements Comparable<K>{
+public class RBTreeNode<K extends Comparable<K>,V> implements Comparable<RBTreeNode<K,V>>{
 	public final static boolean RED = true;
 	public final static boolean BLACK = false;
 	
@@ -20,7 +20,6 @@ public class RBTreeNode<K extends Comparable<K>,V> implements Comparable<K>{
 		this.value = new ArrayList<>();
 		this.value.add(value);
 		this.color = color;
-		
 		
 	}
 
@@ -84,17 +83,18 @@ public class RBTreeNode<K extends Comparable<K>,V> implements Comparable<K>{
 		this.parent = parent;
 	}
 	
-	@Override
-	public int compareTo(K o) {
-		return key.compareTo(o);
-	}
-	
 	public boolean isLeaf() {
 		return right == null && left == null;
 	}
 	
 	public boolean hasOneChild() {
 		return (right == null && left != null)||(right != null && left == null); 
+	}
+
+
+	@Override
+	public int compareTo(RBTreeNode<K, V> o) {
+		return key.compareTo(o.getKey());
 	}
 	
 	
