@@ -45,11 +45,11 @@ public class FXMLControllerFirst {
 		
 		if(file != null) {
 			String path = file.getAbsolutePath();
-			createLeague(path);
+			createLeagueCsv(path);
 		}
     }
     
-    private void createLeague(String path) {
+    private void createLeagueCsv(String path) {
     	this.league = new League();
     	this.league.readCSV(path);
     }
