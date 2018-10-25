@@ -78,6 +78,15 @@ public class AVLTreeNode<K extends Comparable<K>, V> implements Comparable<AVLTr
 		return this.key.compareTo(o.key);
 	}
 
+	public boolean isLeaf() {
+		return right == null && left == null;
+	}
+	
+	public boolean hasOneChild() {
+		return (right == null && left != null)||(right != null && left == null); 
+	}
+	
+	
 
 
 }
