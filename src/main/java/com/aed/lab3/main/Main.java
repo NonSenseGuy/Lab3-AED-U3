@@ -23,17 +23,4 @@ public class Main extends Application{
 		primaryStage.setTitle("FIBA");
 		primaryStage.show();
 	}
-	
-	private League getLeague() {
-		return league;
-	}
-	
-	private void setLeague(League league) {
-		this.league = league;
-	}
-	
-	public void createLeague(String path) {
-		league = new League();
-		league.readCSV(path);
-	}
 }
