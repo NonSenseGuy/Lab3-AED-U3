@@ -1,10 +1,12 @@
 package com.aed.lab3.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.aed.lab3.main.League;
+import com.aed.lab3.main.Player;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,7 +14,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.stage.StageStyle;
 
 public class FXMLWindowController implements Initializable{
 	
@@ -31,7 +36,13 @@ public class FXMLWindowController implements Initializable{
     private ComboBox<String> condition;
     
     @FXML
-    private Button addPlayer;
+    private ListView<Player> listPlayers;
+    
+    @FXML
+    private Button addPlayer, butSearch;
+    
+    @FXML
+    private TextField parameter;
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -60,21 +71,95 @@ public class FXMLWindowController implements Initializable{
     }
     
     @FXML
-    void addPlayerLeague(ActionEvent event) {
-    	String namePlayer = "";
+    void addPlayerLeague(ActionEvent event) throws IOException {
+    	String name = "", team = "";
+    	double assists = 0, rebounds = 0, points = 0, blocks = 0, steals = 0;
+    	int age;
     	
-    	TextInputDialog name = inputDialog("name of the player");
-    	Optional<String> resultName = name.showAndWait();
-    	if(resultName.isPresent()) namePlayer = resultName.get();
+    	TextInputDialog namePlayer = inputDialog("Name of the player");
+    	namePlayer.setTitle("Add Player: Name");
+    	Optional<String> resultName = namePlayer.showAndWait();
+    	if(resultName.isPresent()) name = resultName.get();
+    	else return;
+    	
+    	TextInputDialog teamPlayer = inputDialog("Team of the player");
+    	teamPlayer.setTitle("Add Player: Team");
+    	Optional<String> resultTeam = teamPlayer.showAndWait();
+    	if(resultName.isPresent()) team = resultTeam.get();
+    	else return;
+    	
+    	TextInputDialog agePlayer = inputDialog("Age of the player");
+    	agePlayer.setTitle("Add Player: Age");
+    	Optional<String> resultAge = agePlayer.showAndWait();
+    	if(resultName.isPresent()) age = Integer.valueOf(resultAge.get());
+    	else return;
+    	
+    	TextInputDialog assistsPlayer = inputDialog("Assist of the player");
+    	assistsPlayer.setTitle("Add Player: Assists");
+    	Optional<String> resultAssists = assistsPlayer.showAndWait();
+    	if(resultName.isPresent()) assists = Double.valueOf(resultAssists.get());
+    	else return;
+    	
+    	TextInputDialog pointsPlayer = inputDialog("Points of the player");
+    	pointsPlayer.setTitle("Add Player: Points");
+    	Optional<String> resultPoints = pointsPlayer.showAndWait();
+    	if(resultName.isPresent()) points = Double.valueOf(resultPoints.get());
+    	else return;
+    	
+    	TextInputDialog blocksPlayer = inputDialog("Blocks of the player");
+    	blocksPlayer.setTitle("Add Player: Blocks");
+    	Optional<String> resultBlocks = blocksPlayer.showAndWait();
+    	if(resultName.isPresent()) blocks = Double.valueOf(resultBlocks.get());
+    	else return;
+    	
+    	TextInputDialog reboundsPlayer = inputDialog("Rebounds of the player");
+    	reboundsPlayer.setTitle("Add Player: Rebounds");
+    	Optional<String> resultRebounds = reboundsPlayer.showAndWait();
+    	if(resultName.isPresent()) rebounds = Double.valueOf(resultRebounds.get());
+    	else return;
+    	
+    	TextInputDialog stealsPlayer = inputDialog("Steals of the player");
+    	stealsPlayer.setTitle("Add Player: Steals");
+    	Optional<String> resultSteals = stealsPlayer.showAndWait();
+    	if(resultName.isPresent()) steals = Double.valueOf(resultSteals.get());
+    	else return;
+    	
+    	league.addPlayer(name, team, age, points, rebounds, assists, steals, blocks);
     	
     }
     
     public TextInputDialog inputDialog(String hint) {
-    	TextInputDialog dialog = new TextInputDialog("Option");
+    	TextInputDialog dialog = new TextInputDialog("");
     	dialog.setTitle("Text Input Dialog");
     	dialog.setHeaderText(null);
     	dialog.setContentText("Please enter the " + hint + ": ");
+    	dialog.initStyle(StageStyle.UTILITY);
     	return dialog;
+    }
+    
+    @FXML
+    void searchPlayer(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void changeDataSearch(ActionEvent event) {
+    	searchChoice.getItems().clear();
+    	if(typeDataStructure.getValue() == "AVL Tree") {
+    		searchChoice.getItems().add("Rebounds% per Match");
+        	searchChoice.getItems().add("Assists% per Match");
+    	}else if(typeDataStructure.getValue() == "Red-Black Tree") {
+    		searchChoice.getItems().add("Points% per Match");
+        	searchChoice.getItems().add("Steals% per Match");
+    	}else if(typeDataStructure.getValue() == "Binary Search Tree") {
+    		searchChoice.getItems().add("Points% per Match");
+        	searchChoice.getItems().add("Assists% per Match");
+    	}else {
+    		searchChoice.getItems().add("Points% per Match");
+        	searchChoice.getItems().add("Rebounds% per Match");
+        	searchChoice.getItems().add("Assists% per Match");
+        	searchChoice.getItems().add("Steals% per Match");
+    	}
     }
     
 }
