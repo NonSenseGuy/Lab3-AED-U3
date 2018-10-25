@@ -117,10 +117,10 @@ public class League {
 		
 		String[] information = br.readLine().split(",");
 		
-		double rebounds = Double.valueOf(information[10]) + Double.valueOf(information[11]);
-		Player temp = new Player(information[2], information[1], Integer.valueOf(information[3]),
-				Double.valueOf(information[30]), rebounds, Double.valueOf(information[13]), 
-				Double.valueOf(information[14]), Double.valueOf(information[15]));
+		Player temp = new Player(information[0], information[1], Integer.valueOf(information[2]),
+				Double.valueOf(information[3]), Double.valueOf(information[4]), 
+				Double.valueOf(information[5]), Double.valueOf(information[6]), 
+				Double.valueOf(information[7]));
 		
 		if(br != null) br.close();
 		if(fl != null) fl.close();
@@ -149,6 +149,5 @@ public class League {
     	if(writer != null) writer.close();
     	if(fw != null) fw.close();
     	
-    	System.out.println(player.toString());
     }
 }

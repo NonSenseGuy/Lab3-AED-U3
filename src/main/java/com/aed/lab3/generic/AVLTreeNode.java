@@ -19,6 +19,7 @@ public class AVLTreeNode<K extends Comparable<K>, V> implements Comparable<AVLTr
 
 	public AVLTreeNode(K key,ArrayList<V> value, AVLTreeNode<K,V> left, AVLTreeNode<K,V> right) {
 		this.key = key;
+		this.value = value;
 		this.left = left;
 		this.right = right;
 		if (left == null && right == null)
