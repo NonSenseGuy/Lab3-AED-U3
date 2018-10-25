@@ -240,7 +240,7 @@ public class AVLTree<K extends Comparable<K>,V> {
 		if(current == null || current.getKey().compareTo(key) == 0) {
 			return current;
 		}
-		if(current.getKey().compareTo(key)<0) {
+		if(current.getKey().compareTo(key)>0) {
 			return search(current.getLeft(), key);
 		}else {
 			return search(current.getRight(), key);

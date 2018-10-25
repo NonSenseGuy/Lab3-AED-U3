@@ -1,7 +1,5 @@
 package com.aed.lab3.generic;
 
-import java.util.NoSuchElementException;
-
 public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInterface<K,V>{
 	
 	private RBTreeNode<K,V> root;
@@ -39,7 +37,7 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 	@Override
 	public void insert(K key, V value) {
 		RBTreeNode<K,V> x;
-		if((x = search(key)) != null) {
+		if((x = search(key)) != null && x != nil) {
 			x.getValue().add(value);
 		}else {
 			insert(new RBTreeNode<K,V>(key,value, RBTreeNode.RED));
@@ -160,7 +158,7 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 		if(current == nil || current.getKey().compareTo(key) == 0) {
 			return current;
 		}
-		if(current.getKey().compareTo(key)<0) {
+		if(current.getKey().compareTo(key)>0) {
 			return search(current.getLeft(), key);
 		}else {
 			return search(current.getRight(), key);
@@ -169,8 +167,8 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 
 	@Override
 	public RBTreeNode<K, V> min(RBTreeNode<K, V> node) {
-		if(node != null) {
-			while(node.getLeft() != null) {
+		if(node != nil) {
+			while(node.getLeft() != nil) {
 				node = node.getLeft();
 			}
 			return node;
@@ -180,8 +178,8 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 
 	@Override
 	public RBTreeNode<K, V> max(RBTreeNode<K, V> node) {
-		if(node != null) {
-			while(node.getRight() != null) {
+		if(node != nil) {
+			while(node.getRight() != nil) {
 				node = node.getRight();
 			}
 			return node;
