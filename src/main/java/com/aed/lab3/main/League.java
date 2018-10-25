@@ -172,15 +172,12 @@ public class League {
     }
     
     public ArrayList<Player> searchLessRB(double search, String typeData) throws IOException{
-    	
     	ArrayList<Player> players = new ArrayList<>();
     	RBTreeNode<Double,String> aux = typeData.equals("Points% per Match") ?
     			pointsTree.min(pointsTree.getRoot()) : stealsTree.min(stealsTree.getRoot());
     	
-    	while(aux.getKey().compareTo(search) == -1) {
-    		
+    	while(aux.getKey() < search) {
     		ArrayList<String> playerNode = aux.getValue();
-    		
     		for(int i = 0; i < playerNode.size(); i++) {
     			players.add(chargePlainText(playerNode.get(i)));
     		}

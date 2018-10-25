@@ -149,25 +149,27 @@ public class FXMLWindowController implements Initializable{
     		String typeData = searchChoice.getSelectionModel().getSelectedItem();
     		String logic = condition.getSelectionModel().getSelectedItem();
     		double data = Double.valueOf(parameter.getText());
-   
-    		if(typeDE == "AVL Tree") {
-    			if(logic == "Less") {
+    		
+    		if(typeDE.equals("AVL Tree")) {
+    			if(logic.equals("Less")) {
+
     				players = league.searchLessAVL(data, typeData);
     			}else if(logic == "Greater") {
     				players = league.searchGreaterAVL(data, typeData);
     			}else if(logic == "Equal") {
     				players = league.searchAVL(data, typeData);
     			}
-    		}else if(typeDE == "Red-Black Tree") {
-    			if(logic == "Less") {
+    		}else if(typeDE.equals("Red-Black Tree")) {
+    			if(logic.equals("Less")) {
+    				System.out.println("Work");
     				players = league.searchLessRB(data, typeData);
     			}else if(logic == "Greater") {
     				players = league.searchGreaterRB(data, typeData);
     			}else if(logic == "Equal") {
     				players = league.searchRB(data, typeData);
     			}
-    		}else if(typeDE == "Binary Search Tree") {
-    			if(logic == "Less") {
+    		}else if(typeDE.equals("Binary Search Tree")) {
+    			if(logic.equals("Less")) {
     				players = league.searchLessBST(data, typeData);
     			}else if(logic == "Greater") {
     				players = league.searchGreaterBST(data, typeData);
