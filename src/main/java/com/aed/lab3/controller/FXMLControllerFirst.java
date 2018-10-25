@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import com.aed.lab3.main.League;
 import com.aed.lab3.main.Main;
 import com.aed.lab3.main.Player;
 
