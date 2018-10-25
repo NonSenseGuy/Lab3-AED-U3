@@ -86,8 +86,9 @@ class RBBTreeTest {
 	void deleteTest() {
 		setup4();
 		tree.delete(3.0, "3.0");
-		assertTrue(tree.getRoot().getKey() == 5.0);
+		assertTrue(tree.getRoot().getKey() == 4.0);
 	}
+	
 	
 	
 	

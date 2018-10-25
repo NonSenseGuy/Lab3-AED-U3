@@ -1,5 +1,7 @@
 package com.aed.lab3.main;
 
+import com.aed.lab3.generic.AVLTree;
+import com.aed.lab3.generic.AVLTreeNode;
 import com.aed.lab3.generic.RBBinaryTree;
 import com.aed.lab3.generic.RBTreeNode;
 
@@ -26,17 +28,4 @@ public class Main extends Application{
 		primaryStage.show();
 	}
 	
-	public static void printInorder(RBTreeNode<Double,String> node) {
-	     if (node == null) 
-	            return; 
-	  
-	        /* first recur on left child */
-	        printInorder(node.getLeft()); 
-	  
-	        /* then print the data of node */
-	        System.out.print(node.getKey() + " "); 
-	  
-	        /* now recur on right child */
-	        printInorder(node.getRight()); 
-	}
 }

@@ -7,6 +7,7 @@ public class AVLTreeNode<K extends Comparable<K>, V> implements Comparable<AVLTr
 	private ArrayList<V> value;
 	private AVLTreeNode<K,V> left;
 	private AVLTreeNode<K,V> right;
+	private AVLTreeNode<K,V> parent;
 	public int level;
 	private int depth;
 
@@ -64,6 +65,14 @@ public class AVLTreeNode<K extends Comparable<K>, V> implements Comparable<AVLTr
 
 	public void setRight(AVLTreeNode<K,V> right) {
 		this.right = right;
+	}
+	
+	public AVLTreeNode<K,V> getParent(){
+		return parent;
+	}
+	
+	public void setParent(AVLTreeNode<K,V> node) {
+		parent = node;
 	}
 
 	public int getDepth() {

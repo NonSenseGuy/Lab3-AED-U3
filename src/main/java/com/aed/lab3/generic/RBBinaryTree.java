@@ -114,21 +114,23 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 	
 	
 	public void leftRotate(RBTreeNode<K,V> x) {
-		RBTreeNode<K,V> y = x.getRight();
-		x.setRight(y.getLeft());
-		y.getLeft().setParent(x);
-		y.setParent(x.getParent());
-		if(x.getParent() == nil) {
-			root = y;
-		}else {
-			if(x == x.getParent().getLeft()) {
-				x.getParent().setLeft(y);
+		if(x.getRight() != nil) {
+			RBTreeNode<K,V> y = x.getRight();
+			x.setRight(y.getLeft());
+			y.getLeft().setParent(x);
+			y.setParent(x.getParent());
+			if(x.getParent() == nil) {
+				root = y;
 			}else {
-				x.getParent().setRight(y);
+				if(x == x.getParent().getLeft()) {
+					x.getParent().setLeft(y);
+				}else {
+					x.getParent().setRight(y);
+				}
 			}
+			y.setLeft(x);
+			x.setParent(y);	
 		}
-		y.setLeft(x);
-		x.setParent(y);
 	}
 	
 	public void rightRotate(RBTreeNode<K,V> x) {
@@ -246,7 +248,7 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 		}
 	}
 	
-	private void delete(RBTreeNode<K,V> z) {
+	private RBTreeNode<K,V> delete(RBTreeNode<K,V> z) {
 		RBTreeNode<K,V> y;
 		RBTreeNode<K,V> x;
 		if(z.getLeft() == nil || z.getRight() == nil) {
@@ -275,6 +277,7 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 		if(y.isColor() == RBTreeNode.BLACK) {
 			deleteFixUp(x);
 		}
+		return y;
 	}
 	
 	private void deleteFixUp(RBTreeNode<K,V> x) {
@@ -285,7 +288,7 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 				if(w.isColor() == RBTreeNode.RED) {
 					w.setColor(RBTreeNode.BLACK);
 					x.getParent().setColor(RBTreeNode.RED);
-					leftRotate(x);
+					leftRotate(x.getParent());
 					w = x.getParent().getRight();
 				}
 				if(w.getLeft().isColor() == RBTreeNode.BLACK && w.getRight().isColor() == RBTreeNode.BLACK) {
