@@ -246,8 +246,8 @@ public class League {
     	return players;
 	}
 
-	public void searchGreaterAVL(double data, String typeData) {
-		
+	public ArrayList<Player> searchGreaterAVL(double data, String typeData) {
+		return null;
 	}
 
 	public ArrayList<Player> searchAVL(double data, String typeData) throws IOException{
