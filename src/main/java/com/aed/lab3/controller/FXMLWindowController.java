@@ -1,36 +1,25 @@
 package com.aed.lab3.controller;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.aed.lab3.main.League;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 
 public class FXMLWindowController implements Initializable{
 	
 	private League league;
 
     @FXML
-    private Label labRebound;
-
-    @FXML
-    private Label labPoints;
-
-    @FXML
-    private Label labName;
-
-    @FXML
-    private Label labTeam;
-
-    @FXML
-    private Label labSteal;
-
-    @FXML
-    private Label labBlocks;
+    private Label labBlocks, labAge, labAssis, labSteal, labTeam, labName, labPoints, labRebound;
     
     @FXML
     private ComboBox<String> searchChoice;
@@ -40,12 +29,9 @@ public class FXMLWindowController implements Initializable{
     
     @FXML
     private ComboBox<String> condition;
-
+    
     @FXML
-    private Label labAge;
-
-    @FXML
-    private Label labAssis;
+    private Button addPlayer;
 
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -72,4 +58,23 @@ public class FXMLWindowController implements Initializable{
     public void setLeague(League league) {
     	this.league = league;
     }
+    
+    @FXML
+    void addPlayerLeague(ActionEvent event) {
+    	String namePlayer = "";
+    	
+    	TextInputDialog name = inputDialog("name of the player");
+    	Optional<String> resultName = name.showAndWait();
+    	if(resultName.isPresent()) namePlayer = resultName.get();
+    	
+    }
+    
+    public TextInputDialog inputDialog(String hint) {
+    	TextInputDialog dialog = new TextInputDialog("Option");
+    	dialog.setTitle("Text Input Dialog");
+    	dialog.setHeaderText(null);
+    	dialog.setContentText("Please enter the " + hint + ": ");
+    	return dialog;
+    }
+    
 }

@@ -8,10 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.aed.lab3.generic.AVLTree;
-import com.aed.lab3.generic.AVLTreeNode;
 import com.aed.lab3.generic.BinaryTree;
 import com.aed.lab3.generic.RBBinaryTree;
-import com.aed.lab3.generic.RBTreeNode;
 
 public class League {
 	
@@ -21,14 +19,16 @@ public class League {
 	private AVLTree<Double,String> astTree;
 	private BinaryTree<Double,String> bstPointsTree;
 	private BinaryTree<Double,String> bstAstTree;
+	private int maxValuePath;
 	
 	public League() {
-		pointsTree = new RBBinaryTree<Double, String>();
-		stealsTree = new RBBinaryTree<Double, String>();
-		rbdTree = new AVLTree<Double, String>();
-		astTree = new AVLTree<Double, String>();
-		bstPointsTree = new BinaryTree<Double, String>();
-		bstAstTree = new BinaryTree<Double, String>();
+		this.pointsTree = new RBBinaryTree<Double, String>();
+		this.stealsTree = new RBBinaryTree<Double, String>();
+		this.rbdTree = new AVLTree<Double, String>();
+		this.astTree = new AVLTree<Double, String>();
+		this.bstPointsTree = new BinaryTree<Double, String>();
+		this.bstAstTree = new BinaryTree<Double, String>();
+		this.maxValuePath = 0;
 	}
 
 	public RBBinaryTree<Double, String> getPointsTree() {
@@ -79,8 +79,20 @@ public class League {
 		this.bstAstTree = bstAstTree;
 	}
 	
-	public static void createPointsTree(String path) {
+	public void addPlayer(String name, String team, int age, double points, double rebounds, double assists, 
+			double steals, double blocks) throws IOException {
 		
+		Player temp = new Player(name, team, age, points, rebounds, assists, steals, blocks);
+		this.maxValuePath ++;
+		plainText(maxValuePath, temp);
+		String path = "./src/main/resources/last/" + maxValuePath + ".txt";
+		
+		pointsTree.insert(temp.getPoints(), path);
+		stealsTree.insert(temp.getSteals(), path);
+		rbdTree.insert(temp.getRebounds(), path);
+		astTree.insert(temp.getAssists(), path);
+		bstPointsTree.insert(temp.getPoints(), path);
+		bstAstTree.insert(temp.getAssists(), path);
 	}
 	
 	public void readCSV(String path) {
@@ -103,7 +115,7 @@ public class League {
 				chargeCsv("./src/main/resources/last/" + counter + ".txt");
 				counter++;
 			}
-			
+			this.maxValuePath = counter;
 			if(br != null) br.close();
 			
 		}catch (Exception e) {
