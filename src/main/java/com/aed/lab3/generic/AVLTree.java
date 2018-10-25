@@ -158,4 +158,43 @@ public class AVLTree<K extends Comparable <K>, V>{
 		}
 		return null;
 	}
+	
+	public Node<K,V> successor(K key) {
+		if(root != null) {
+			return successor(search(key));
+		}
+		return null;
+	}
+
+	
+	private Node<K,V> successor(Node<K,V> node) {
+		if(node.getRight() != null) {
+			return min(node.getRight());
+		}
+		Node<K,V> y = node.getParent();
+		while(y != null && node == y.getRight()) {
+			node = y;
+			y = y.getParent();
+		}
+		return y;
+	}
+
+	public Node<K,V> predecessor(K key) {
+		if(root != null) {
+			return predecessor(search(key));
+		}
+		return null;
+	}
+	
+	private Node<K,V> predecessor(Node<K,V> node) {
+		if(node.getLeft() != null) {
+			return max(node.getLeft());
+		}
+		Node<K,V> y = node.getParent();
+		while(y != null && node == y.getLeft()) {
+			node = y;
+			y = y.getParent();
+		}
+		return y;
+	}
 }

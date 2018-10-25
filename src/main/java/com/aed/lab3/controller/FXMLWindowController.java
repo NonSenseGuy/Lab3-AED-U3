@@ -152,7 +152,6 @@ public class FXMLWindowController implements Initializable{
     		
     		if(typeDE.equals("AVL Tree")) {
     			if(logic.equals("Less")) {
-
     				players = league.searchLessAVL(data, typeData);
     			}else if(logic == "Greater") {
     				players = league.searchGreaterAVL(data, typeData);

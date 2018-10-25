@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.aed.lab3.generic.AVLTree;
-import com.aed.lab3.generic.AVLTreeNode;
 import com.aed.lab3.generic.BinaryTree;
+import com.aed.lab3.generic.Node;
 import com.aed.lab3.generic.RBBinaryTree;
 import com.aed.lab3.generic.RBTreeNode;
 import com.aed.lab3.generic.TreeNode;
@@ -94,8 +94,8 @@ public class League {
 		
 		pointsTree.insert(temp.getPoints(), path);
 		stealsTree.insert(temp.getSteals(), path);
-		rbdTree.insert(temp.getRebounds(), path);
-		astTree.insert(temp.getAssists(), path);
+		rbdTree.insert(new Node<Double,String>(temp.getRebounds(), path));
+		astTree.insert(new Node<Double,String>(temp.getAssists(), path));
 		bstPointsTree.insert(temp.getPoints(), path);
 		bstAstTree.insert(temp.getAssists(), path);
 		
@@ -147,8 +147,8 @@ public class League {
 		
 		pointsTree.insert(temp.getPoints(), path);
 		stealsTree.insert(temp.getSteals(), path);
-		rbdTree.insert(temp.getRebounds(), path);
-		astTree.insert(temp.getAssists(), path);
+		rbdTree.insert(new Node<Double,String>(temp.getRebounds(), path));
+		astTree.insert(new Node<Double,String>(temp.getAssists(), path));
 		bstPointsTree.insert(temp.getPoints(), path);
 		bstAstTree.insert(temp.getAssists(), path);
 		
@@ -232,7 +232,7 @@ public class League {
     	
     	while(aux.getKey() < data) {
     		
-    		ArrayList<String> playerNode = aux.;
+    		ArrayList<String> playerNode = aux.getVal();
     		
     		for(int i = 0; i < playerNode.size(); i++) {
     			players.add(chargePlainText(playerNode.get(i)));
@@ -249,10 +249,10 @@ public class League {
 
 	public ArrayList<Player> searchAVL(double data, String typeData) throws IOException{
 		ArrayList<Player> players = new ArrayList<>();
-		AVLTreeNode<Double,String> aux = typeData.equals("Rebounds% per Match") ? 
+		Node<Double,String> aux = typeData.equals("Rebounds% per Match") ? 
 				rbdTree.search(data) : astTree.search(data);
-		for(int i = 0; i < aux.getValue().size(); i++) {
-			players.add(chargePlainText(aux.getValue().get(i)));
+		for(int i = 0; i < aux.getVal().size(); i++) {
+			players.add(chargePlainText(aux.getVal().get(i)));
 		}
 		
 		return players;
