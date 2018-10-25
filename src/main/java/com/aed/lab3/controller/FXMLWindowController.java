@@ -54,7 +54,6 @@ public class FXMLWindowController implements Initializable{
     	searchChoice.getItems().add("Rebounds% per Match");
     	searchChoice.getItems().add("Assists% per Match");
     	searchChoice.getItems().add("Steals% per Match");
-    	searchChoice.getItems().add("Blocks% per Match");
     	
     	typeDataStructure.getItems().add("AVL Tree");
     	typeDataStructure.getItems().add("Red-Black Tree");
