@@ -174,7 +174,7 @@ public class League {
     public ArrayList<Player> searchLessRB(double search, String typeData) throws IOException{
     	
     	ArrayList<Player> players = new ArrayList<>();
-    	RBTreeNode aux = typeData.equals("Points% per Match") ? (RBTreeNode<Double, String>) 
+    	RBTreeNode<Double,String> aux = typeData.equals("Points% per Match") ?
     			pointsTree.min(pointsTree.getRoot()) : stealsTree.min(stealsTree.getRoot());
     	
     	while(aux.getKey().compareTo(search) == -1) {
@@ -184,8 +184,8 @@ public class League {
     		for(int i = 0; i < playerNode.size(); i++) {
     			players.add(chargePlainText(playerNode.get(i)));
     		}
-    		aux = typeData.equals("Points% per Match") ? pointsTree.successor((Double) aux.getKey()) : 
-    			stealsTree.successor((Double) aux.getKey());
+    		aux = typeData.equals("Points% per Match") ? pointsTree.successor( aux.getKey()) : 
+    			stealsTree.successor(aux.getKey());
     	}
     	return players;
     }
@@ -211,7 +211,7 @@ public class League {
 	public ArrayList<Player> searchLessBST(double data, String typeData) throws IOException {
 		ArrayList<Player> players = new ArrayList<>();
 		
-    	TreeNode aux = typeData.equals("Points% per Match") ? (TreeNode<Double, String>) 
+    	TreeNode<Double, String> aux = typeData.equals("Points% per Match") ?  
     			bstPointsTree.min(bstPointsTree.getRoot()) : bstAstTree.min(bstAstTree.getRoot());
     	
     	while(aux.getKey().compareTo(data) == -1) {
@@ -221,8 +221,8 @@ public class League {
     		for(int i = 0; i < playerNode.size(); i++) {
     			players.add(chargePlainText(playerNode.get(i)));
     		}
-    		aux = typeData.equals("Points% per Match") ? bstPointsTree.successor((Double) aux.getKey()) : 
-    			bstAstTree.successor((Double) aux.getKey());
+    		aux = typeData.equals("Points% per Match") ? bstPointsTree.successor(aux.getKey()) : 
+    			bstAstTree.successor( aux.getKey());
     	}
     	return players;
 	}
@@ -230,7 +230,7 @@ public class League {
 	public ArrayList<Player> searchLessAVL(double data, String typeData) throws IOException {
 		ArrayList<Player> players = new ArrayList<>();
 		
-    	AVLTreeNode aux = typeData.equals("Rebounds% per Match") ? (AVLTreeNode<Double, String>) 
+    	AVLTreeNode<Double,String> aux = typeData.equals("Rebounds% per Match") ?
     			rbdTree.min(rbdTree.getRoot()) : astTree.min(astTree.getRoot());
     	
     	while(aux.getKey().compareTo(data) == -1) {
@@ -240,19 +240,25 @@ public class League {
     		for(int i = 0; i < playerNode.size(); i++) {
     			players.add(chargePlainText(playerNode.get(i)));
     		}
-    		aux = typeData.equals("Rebounds% per Match") ? rbdTree.successor((Double) aux.getKey()) : 
-    			astTree.successor((Double) aux.getKey());
+    		aux = typeData.equals("Rebounds% per Match") ? rbdTree.successor(aux.getKey()) : 
+    			astTree.successor(aux.getKey());
     	}
     	return players;
 	}
 
 	public void searchGreaterAVL(double data, String typeData) {
-		// TODO Auto-generated method stub
 		
 	}
 
-	public void searchAVL(double data, String typeData) {
-		// TODO Auto-generated method stub
+	public ArrayList<Player> searchAVL(double data, String typeData) throws IOException{
+		ArrayList<Player> players = new ArrayList<>();
+		AVLTreeNode<Double,String> aux = typeData.equals("Rebounds% per Match") ? 
+				rbdTree.search(data) : astTree.search(data);
+		for(int i = 0; i < aux.getValue().size(); i++) {
+			players.add(chargePlainText(aux.getValue().get(i)));
+		}
+		
+		return players;
 		
 	}
 
