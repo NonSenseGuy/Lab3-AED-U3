@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 	
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -26,6 +25,20 @@ public class Main extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("FIBA");
 		primaryStage.show();
+	}
+	
+	static void printInorder(AVLTreeNode<Double,String> node) {
+	     if (node == null)
+	            return; 
+	  
+	        /* first recur on left child */
+	        printInorder(node.getLeft()); 
+	  
+	        /* then print the data of node */
+	        System.out.println(node.getKey() + " " + node.getValue()); 
+	  
+	        /* now recur on right child */
+	        printInorder(node.getRight()); 
 	}
 	
 }

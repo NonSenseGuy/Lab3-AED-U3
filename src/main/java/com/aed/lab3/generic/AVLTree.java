@@ -8,14 +8,20 @@ public class AVLTree<K extends Comparable<K>,V> {
 	public AVLTree() {
 		root = null;
 	}
+	
+	
 
 	public AVLTreeNode<K, V> getRoot() {
 		return root;
 	}
-	
+
+
+
 	public void setRoot(AVLTreeNode<K, V> root) {
 		this.root = root;
 	}
+
+
 
 	public AVLTreeNode<K,V> Maximum() {
 		AVLTreeNode<K,V> local = root;
@@ -43,10 +49,11 @@ public class AVLTree<K extends Comparable<K>,V> {
 		
 	}
 
-	public void insert(K key, V value) {
+	public AVLTreeNode<K,V> insert(K key, V value) {
 		AVLTreeNode<K,V> newNode;
 		if((newNode = search(key)) != null) {
 			newNode.getValue().add(value);
+			return root;
 		}
 		newNode = new AVLTreeNode<K,V>(key,value);
 		root = insert(root,newNode);
@@ -87,68 +94,64 @@ public class AVLTree<K extends Comparable<K>,V> {
 		return node;
 	}
 	
-//	public void delete(K key, V value){
-//		AVLTreeNode<K,V> node;
-//		if((node = search(key)) != null) {
-//			for(int i = 0; i < node.getValue().size(); i++) {
-//				if(node.getValue().get(i).equals(value)) {
-//					node.getValue().remove(i);
-//					if(node.getValue().isEmpty()) {
-//						delete(node);
-//						return;
-//					}
-//				}
-//			}
-//			delete(node);
-//		}
-//	
-//	}
-//	
-//	private void delete(AVLTreeNode<K,V> node) {
-//		if(node.isLeaf()) {// If the node is a leaf
-//			if(getParent(node) == null) {
-//				root = null;
-//				return;
-//			}else if(getParent(node).compareTo(node) < 0) {// Get to the parent evaluate wich child is the one to be deleted
-//				getParent(node).setRight(null);// Set left or right child null 
-//			}else {
-//				getParent(node).setLeft(null);
-//			}
-//		}else if(node.hasOneChild()) {// If the node has only one child
-//			if(getParent(node).compareTo(node) < 0) {//Get to the parent of the deleted node and set the child of the deleted node 
-//				if(node.getLeft() != null) {					//to be the child of the parent 
-//					getParent(node).setRight(node.getLeft());
-//				}else {
-//					getParent(node).setRight(node.getRight());
-//				}
-//			}else {
-//				if(node.getLeft() != null) {
-//					getParent(node).setLeft(node.getLeft());
-//				}else {
-//					getParent(node).setLeft(node.getRight());
-//				}
-//				
-//			}
-//		}else {//If the node has 2 childs gets replaced with its successor and the succeessor its deleted
-//			AVLTreeNode<K,V> successor = successor(node);
-//			node.setKey(successor.getKey());
-//			node.setValue(successor.getValue());
-//			delete(successor);
-//				
-//		}
-//		
-//		switch (balanceNumber(getParent(node))) {
-//		case 1:
-//			node = rotateLeft(node);
-//			break;
-//		case -1:
-//			node = rotateRight(node);
-//			break;
-//		
-//		}
-//		
-//		
-//	}
+	public void delete(K key, V value){
+		AVLTreeNode<K,V> node;
+		if((node = search(key)) != null) {
+			for(int i = 0; i < node.getValue().size(); i++) {
+				if(node.getValue().get(i).equals(value)) {
+					node.getValue().remove(i);
+				}
+			}
+			if(node.getValue().size() < 1) {
+				delete(node);
+			}
+			
+		}
+	
+	}
+	
+	private void delete(AVLTreeNode<K,V> node) {
+		if(node.isLeaf()) {// If the node is a leaf
+			if(getParent(node).compareTo(node) < 0) {// Get to the parent evaluate wich child is the one to be deleted
+				getParent(node).setRight(null);// Set left or right child null 
+			}else {
+				getParent(node).setLeft(null);
+			}
+		}else if(node.hasOneChild()) {// If the node has only one child
+			if(getParent(node).compareTo(node) < 0) {//Get to the parent of the deleted node and set the child of the deleted node 
+				if(node.getLeft() != null) {					//to be the child of the parent 
+					getParent(node).setRight(node.getLeft());
+				}else {
+					getParent(node).setRight(node.getRight());
+				}
+			}else {
+				if(node.getLeft() != null) {
+					getParent(node).setLeft(node.getLeft());
+				}else {
+					getParent(node).setLeft(node.getRight());
+				}
+				
+			}
+		}else {//If the node has 2 childs gets replaced with its successor and the succeessor its deleted
+			AVLTreeNode<K,V> successor = successor(node);
+			node.setKey(successor.getKey());
+			node.setValue(successor.getValue());
+			delete(successor);
+				
+		}
+		
+		switch (balanceNumber(getParent(node))) {
+		case 1:
+			node = rotateLeft(node);
+			break;
+		case -1:
+			node = rotateRight(node);
+			break;
+		
+		}
+		
+		
+	}
 	
 	
 	public AVLTreeNode<K,V> successor(K key) {
@@ -163,10 +166,10 @@ public class AVLTree<K extends Comparable<K>,V> {
 		if(node.getRight() != null) {
 			return min(node.getRight());
 		}
-		AVLTreeNode<K,V> y = node.getParent();
+		AVLTreeNode<K,V> y = getParent(node);
 		while(y != null && node == y.getRight()) {
 			node = y;
-			y = y.getParent();
+			y = getParent(y);
 		}
 		return y;
 	}
@@ -203,10 +206,10 @@ public class AVLTree<K extends Comparable<K>,V> {
 		if(node.getLeft() != null) {
 			return max(node.getLeft());
 		}
-		AVLTreeNode<K,V> y = node.getParent();
+		AVLTreeNode<K,V> y = getParent(node);
 		while(y != null && node == y.getLeft()) {
 			node = y;
-			y = y.getParent();
+			y =getParent(y);
 		}
 		return y;
 	}
@@ -221,46 +224,26 @@ public class AVLTree<K extends Comparable<K>,V> {
 		return 0;
 	}
 
-	private void rotateLeft(AVLTreeNode<K,V> x) {
-		if(x.getRight() != null) {
-			AVLTreeNode<K,V> y = x.getRight();
-			x.setRight(y.getLeft());
-			y.getLeft().setParent(x);
-			y.setParent(x.getParent());
-			if(x.getParent() == null) {
-				root = y;
-			}else {
-				if(x == x.getParent().getLeft()) {
-					x.getParent().setLeft(y);
-				}else {
-					x.getParent().setRight(y);
-				}
-			}
-			y.setLeft(x);
-			x.setParent(y);	
-		}
+	private AVLTreeNode<K,V> rotateLeft(AVLTreeNode<K,V> node) {
+		AVLTreeNode<K,V> q = node;
+		AVLTreeNode<K,V> p = q.getRight();
+		AVLTreeNode<K,V> c = q.getLeft();
+		AVLTreeNode<K,V> a = p.getLeft();
+		AVLTreeNode<K,V> b = p.getRight();
+		q = new AVLTreeNode<K,V>(q.getKey(),q.getValue(), c, a);
+		p = new AVLTreeNode<K,V>(p.getKey(),q.getValue(), q, b);
+		return p;
 	}
-	
-	
 
-	private void rotateRight(AVLTreeNode<K,V> x) {
-		if(x.getLeft() != null) {
-			AVLTreeNode<K,V> y = x.getLeft();
-			x.setLeft(y.getRight());
-			y.getRight().setParent(x);
-			y.setParent(x.getParent());
-			if(x.getParent() == null) {
-				root = y;
-			}else {
-				if(x == x.getParent().getRight()) {
-					x.getParent().setRight(y);
-				}else {
-					x.getParent().setLeft(y);
-				}
-			}
-			y.setRight(x);
-			x.setParent(y);
-		}
+	private AVLTreeNode<K,V> rotateRight(AVLTreeNode<K,V> node) {
+		AVLTreeNode<K,V>q = node;
+		AVLTreeNode<K,V> p = q.getLeft();
+		AVLTreeNode<K,V> c = q.getRight();
+		AVLTreeNode<K,V> a = p.getLeft();
+		AVLTreeNode<K,V> b = p.getRight();
+		q = new AVLTreeNode<K,V>(q.getKey(),q.getValue(), b, c);
+		p = new AVLTreeNode<K,V>(p.getKey(),q.getValue(), a, q);
+		return p;
 	}
 
 	public AVLTreeNode<K, V> search(K key){
@@ -278,22 +261,20 @@ public class AVLTree<K extends Comparable<K>,V> {
 		}
 	}
 	
-//	private AVLTreeNode<K,V> getParent(AVLTreeNode<K,V> node){
-//		if(root == node)
-//			return null;
-//		return getParent(root, node);
-//	}
+	public AVLTreeNode<K,V> getParent(AVLTreeNode<K,V> node){
+		return getParent(root, node);
+	}
 	
-//	private AVLTreeNode<K,V> getParent(AVLTreeNode<K,V> parent, AVLTreeNode<K,V> child){
-//		if(parent == null || parent.getLeft().compareTo(child) == 0 || parent.getRight().compareTo(child) == 0) {
-//			return parent;
-//		}
-//		if(parent.compareTo(child)<0) {
-//			return getParent(parent.getLeft(),child);
-//		}else {
-//			return getParent(parent.getRight(), child);
-//		}
-//	}
+	private AVLTreeNode<K,V> getParent(AVLTreeNode<K,V> parent, AVLTreeNode<K,V> child){
+		if(parent == null || parent.getLeft().compareTo(child) == 0 || parent.getRight().compareTo(child) == 0) {
+			return parent;
+		}
+		if(parent.compareTo(child)<0) {
+			return getParent(parent.getLeft(),child);
+		}else {
+			return getParent(parent.getRight(), child);
+		}
+	}
 
 }
 
