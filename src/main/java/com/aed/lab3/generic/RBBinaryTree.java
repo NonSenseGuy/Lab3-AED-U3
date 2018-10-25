@@ -235,7 +235,11 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 			for (int i = 0; i < z.getValue().size(); i++) {
 				if(z.getValue().get(i).equals(value)) {
 					z.getValue().remove(i);
-					return;
+					if(z.getValue().size() == 0) {
+						delete(z);
+						return;
+					}
+					
 				}
 			}
 			delete(z);
