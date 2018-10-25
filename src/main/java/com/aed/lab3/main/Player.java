@@ -5,10 +5,12 @@ public class Player {
 	private String name, team;
 	private int age, points, rebounds, assists, steals, blocks;
 	
-	public Player(String name, String team, int age, int rebounds, int assists, int steals, int blocks) {
+	public Player(String name, String team, int age, int points, int rebounds, int assists, 
+			int steals, int blocks) {
 		this.name = name;
 		this.team = team;
 		this.age = age;
+		this.points = points;
 		this.rebounds = rebounds;
 		this.assists = assists;
 		this.steals = steals;
