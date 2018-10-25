@@ -9,10 +9,10 @@ public class RBBinaryTree<K extends Comparable<K>, V> implements RBBinaryTreeInt
 	private long size;
 	
 	public RBBinaryTree() {
+		nil = new RBTreeNode<K,V>(null,null,false);
 		size = 0;
 		root = nil;
 		root.setParent(nil);
-		nil = new RBTreeNode<K,V>(null,null,false);
 	}
 	
 	public RBTreeNode<K,V> getRoot(){

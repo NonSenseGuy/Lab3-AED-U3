@@ -23,12 +23,12 @@ public class League {
 	private BinaryTree<Double,String> bstAstTree;
 	
 	public League() {
-		pointsTree = new RBBinaryTree<>();
-		stealsTree = new RBBinaryTree<>();
-		rbdTree = new AVLTree<>();
-		astTree = new AVLTree<>();
-		bstPointsTree = new BinaryTree<>();
-		bstAstTree = new BinaryTree<>();
+		pointsTree = new RBBinaryTree<Double, String>();
+		stealsTree = new RBBinaryTree<Double, String>();
+		rbdTree = new AVLTree<Double, String>();
+		astTree = new AVLTree<Double, String>();
+		bstPointsTree = new BinaryTree<Double, String>();
+		bstAstTree = new BinaryTree<Double, String>();
 	}
 
 	public RBBinaryTree<Double, String> getPointsTree() {
