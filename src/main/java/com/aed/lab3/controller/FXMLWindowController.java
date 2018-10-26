@@ -149,6 +149,7 @@ public class FXMLWindowController implements Initializable{
     		String typeData = searchChoice.getSelectionModel().getSelectedItem();
     		String logic = condition.getSelectionModel().getSelectedItem();
     		double data = Double.valueOf(parameter.getText());
+    		System.out.println(parameter.getText());
     		
     		if(typeDE.equals("AVL Tree")) {
     			if(logic.equals("Less")) {
@@ -180,9 +181,11 @@ public class FXMLWindowController implements Initializable{
     		
     	}catch(Exception e) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
-        	alert.setTitle("Confirmation Dialog");
+        	alert.setTitle("Error");
         	alert.setHeaderText(null);
         	alert.setContentText("There are fields that incorrect. Check.");
+        	alert.show();
+        	e.printStackTrace();
     	}
     }
     
@@ -191,6 +194,7 @@ public class FXMLWindowController implements Initializable{
 		for(int i = 0; i < players.size(); i++) {
 			listPlayers.getItems().add(players.get(i));
 		}
+		listPlayers.refresh();
 	}
 
 	@FXML
